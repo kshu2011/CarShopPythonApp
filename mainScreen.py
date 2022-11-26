@@ -1,82 +1,94 @@
-# this will create a simple login screen
-# resources used: https://www.pythontutorial.net/tkinter/tkinter-stringvar/ and
-# https://www.geeksforgeeks.org/python-tkinter-entry-widget/
-# will need to use pyinstaller to make it an executable? Need to update PATH? https://datatofish.com/add-python-to-windows-path/
-# some other sources https://datatofish.com/executable-pyinstaller/
-# https://pyinstaller.org/en/stable/usage.html
-# https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-1-configure-development-environment-for-pyodbc-python-development?view=sql-server-2017
-# https://www.geeksforgeeks.org/open-a-new-window-with-a-button-in-python-tkinter/
+"""This is the main menu screen, it will create a menu where the user can choose
+how to navigate/use the application."""
 
+"""Resources used: 
+https://www.pythontutorial.net/tkinter/tkinter-stringvar/ and
+https://www.geeksforgeeks.org/python-tkinter-entry-widget/
+will need to use pyinstaller to make it an executable? Need to update PATH? 
+https://datatofish.com/add-python-to-windows-path/
+https://datatofish.com/executable-pyinstaller/
+https://pyinstaller.org/en/stable/usage.html
+https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-1-configure-development-environment-for-pyodbc-python-development?view=sql-server-2017
+https://www.geeksforgeeks.org/open-a-new-window-with-a-button-in-python-tkinter/"""
 
 import tkinter as tk
 
-from GuestCarShopScreen import GuestCarShopScreen
+from PreviewCarShopScreen import PreviewCarShopScreen
 from LoginScreen import LoginScreen
 from NewFeatures import NewFeaturesScreen
 from mainHelpScreen import MainHelpScreen
 from profileScreen import ProfileScreen
 
 
+def setup_root_window():
+    """Function will set up the root window - which is the main window
+    for this application."""
+    root = tk.Tk()
+    root.geometry("300x200")
+    frame = tk.Frame(root, padx=30, pady=30)
+    frame.grid()
+    return frame, root
+
+
+def title_label(frame):
+    """Function sets up the title for this window."""
+    title_name = tk.Label(frame, text='Car Shop App Menu.', font=('calibre', 20, 'bold'))
+    title_name.grid(row=0)
+
+
 class MainScreen:
     """This class creates the main screen for the car shop application."""
+
     def __init__(self):
-        """This initializes function will initialize the main window by using tkinter."""
-        # create the main window
-        self.root = tk.Tk()
-        self.root.geometry("300x200")
+        """Initializes the window and calls functions to create GUI's."""
+        self._frame, self._root = setup_root_window()
+        self.__setup_gui(self._frame)
+        self._root.mainloop()
 
-        # create a frame that goes inside our main window and place it using grid
-        frame = tk.Frame(self.root, padx=30, pady=30)
-        frame.grid()
-        self.main_screen_part1(frame)
-        self.main_screen_part2(frame)
-        # start the window, or run it basically
-        self.root.mainloop()
+    def __setup_gui(self, frame):
+        """Function will call all necessary function to setup GUI's."""
+        title_label(frame)
+        self.__login_new_user_btn(frame)
+        self.__guest_feature_btn(frame)
+        self.__help_btn(frame)
 
-    def main_screen_part1(self, frame):
-        """This function creates the first part of main screen.
-        it sets the title, login button, and new user button"""
-        # putting labels and buttons into our main window
-        title_name = tk.Label(frame, text='Car Shop App.', font=('calibre', 20, 'bold'))
-        title_name.grid(row=0)
-
-        login_button = tk.Button(frame, text='Login', command=self.login_command)
+    def __login_new_user_btn(self, frame):
+        """Function creates login and new user buttons."""
+        login_button = tk.Button(frame, text='Login', command=self.__login_command)
         login_button.grid(row=2)
 
-        new_user_button = tk.Button(frame, text='New User', command=self.new_user_command)
+        new_user_button = tk.Button(frame, text='New User', command=self.__new_user_command)
         new_user_button.grid(row=3)
 
-    def main_screen_part2(self, frame):
-        """This function creates the second part of main screen.
-        it sets the guest button, new features and help button"""
-        guest_button = tk.Button(frame, text='Guest View', command=self.guest_screen)
-        guest_button.grid(row=4)
+    def __guest_feature_btn(self, frame):
+        """Function creates guest, and new features buttons."""
+        preview_button = tk.Button(frame, text='Preview', command=self.__preview_screen)
+        preview_button.grid(row=4)
 
-        new_features = tk.Button(frame, text='New Features!', command=self.new_features)
+        new_features = tk.Button(frame, text='New Features!', command=self.__new_features)
         new_features.grid(row=6)
 
-        help_button = tk.Button(frame, text='Help', command=self.main_help_screen)
+    def __help_btn(self, frame):
+        """Function sets up the help button."""
+        help_button = tk.Button(frame, text='Help', command=self.__main_help_screen)
         help_button.grid(row=7, column=5)
 
-    def login_command(self):
+    def __login_command(self):
         """ This will create a login window """
-        LoginScreen(self.root)
+        LoginScreen(self._root)
 
-    def main_help_screen(self):
+    def __main_help_screen(self):
         """This will create the main help screen"""
-        MainHelpScreen(self.root)
+        MainHelpScreen(self._root)
 
-    def new_user_command(self):
+    def __new_user_command(self):
         """this will create the profile screen"""
-        ProfileScreen(self.root)
+        ProfileScreen(self._root)
 
-    def guest_screen(self):
+    def __preview_screen(self):
         """this will create the guest car shop screen"""
-        GuestCarShopScreen(self.root)
+        PreviewCarShopScreen(self._root)
 
-    def new_features(self):
+    def __new_features(self):
         """this will create the new features screen"""
-        NewFeaturesScreen(self.root)
-
-
-
+        NewFeaturesScreen(self._root)

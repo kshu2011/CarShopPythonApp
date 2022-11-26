@@ -20,11 +20,11 @@ class AdvancedFilterScreen:
         help_title.grid(row=0)
 
 
-        car_manufacturer_filter = tk.Label(main_help_window, text="Car Manufacturer: ", font=('calibre', 10, 'bold'))
-        car_manufacturer_filter.grid(row=1)
-
-        self.input_car_manufacturer = tk.Entry(main_help_window, font=('calibre', 10, 'bold'))
-        self.input_car_manufacturer.grid(row=1, column=1)
+        # car_manufacturer_filter = tk.Label(main_help_window, text="Car Manufacturer: ", font=('calibre', 10, 'bold'))
+        # car_manufacturer_filter.grid(row=1)
+        #
+        # self.input_car_manufacturer = tk.Entry(main_help_window, font=('calibre', 10, 'bold'))
+        # self.input_car_manufacturer.grid(row=1, column=1)
 
         unique_filter = tk.Label(main_help_window, text="Unique Feature from user: ", font=('calibre', 10, 'bold'))
         unique_filter.grid(row=2)
@@ -37,6 +37,7 @@ class AdvancedFilterScreen:
 
     def submit(self):
         #self.shopscreen.set_advanced(self.input_car_manufacturer.get(), self.input_unique_filter.get())
-        AreYouSureScreen(self.root, self.shopscreen, self.input_car_manufacturer.get(), self.input_unique_filter.get())
+        #AreYouSureScreen(self.root, self.shopscreen, self.input_car_manufacturer.get(), self.input_unique_filter.get())
+        AreYouSureScreen(self.root, self.shopscreen, self.input_unique_filter.get())
 
 
