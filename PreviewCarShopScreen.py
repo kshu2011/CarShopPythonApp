@@ -12,7 +12,7 @@ def setup_main_window(root):
     Then creates a new window by setting root as it's toplevel."""
 
     car_shop_window = tk.Toplevel(root)
-    car_shop_window.geometry("750x750")
+    car_shop_window.geometry("650x450")
     car_shop_window.grid()
     return car_shop_window
 
@@ -38,16 +38,16 @@ def generic_filter_items(car_shop_window):
 def create_listbox_gui(car_shop_window):
     """The function will create a listbox item GUI."""
     listbox = tk.Listbox(car_shop_window, height=20, width=30, bg="grey", activestyle='dotbox', fg="yellow")
-    listbox.insert(1, "*Default data*")
-    listbox.insert(2, "*Default data*")
-    listbox.insert(3, "*Default data*")
+    listbox.insert(1, "BMW")
+    listbox.insert(2, "M3")
+    listbox.insert(3, "2023")
     listbox.grid(row=7)
 
 
 def create_image_gui(car_shop_window):
     """This function sets up the image GUI."""
 
-    path = "default_image.png"
+    path = "default_car.jpg"
     img_to_display = ImageTk.PhotoImage(Image.open(path).resize((350, 350)))
     panel = tk.Label(car_shop_window, image=img_to_display)
     panel.image = img_to_display

@@ -228,7 +228,7 @@ class CarShopScreen:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST, PORT))
             print("Sending Request... ")
-            s.sendall(str.encode(year_of_car + make_of_car + model_of_car + self._unique_filter_str))
+            s.sendall(str.encode(self._unique_filter_str + year_of_car + make_of_car + model_of_car))
         time.sleep(2)
 
     def __get_newest_file(self):

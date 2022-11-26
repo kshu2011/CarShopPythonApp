@@ -33,7 +33,6 @@ class AreYouSureScreen:
         """ Initializes all the necassary private variables. """
 
         self._shop_screen = carshop
-        #self._filter1 = filter1
         self._filter2 = filter2
         self._main_window = setup_main_window(root)
         self.setup_gui(self._main_window)
